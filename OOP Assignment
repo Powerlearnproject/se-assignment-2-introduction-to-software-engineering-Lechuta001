@@ -1,0 +1,37 @@
+# Base class
+class Book:
+    def __init__(self, title, author, pages):
+        self.title = title
+        self.author = author
+        self.pages = pages
+
+    def get_info(self):
+        return f"'{self.title}' by {self.author}, {self.pages} pages."
+
+# Subclass with inheritance and method override
+class EBook(Book):
+    def __init__(self, title, author, pages, file_size):
+        super().__init__(title, author, pages)
+        self.file_size = file_size  # in MB
+
+    def get_info(self):
+        return f"'{self.title}' (E-Book) by {self.author}, {self.pages} pages, {self.file_size}MB."
+
+
+# Base class
+class Vehicle:
+    def move(self):
+        print("The vehicle moves.")
+
+# Subclasses with polymorphic behavior
+class Car(Vehicle):
+    def move(self):
+        print("Driving 🚗")
+
+class Plane(Vehicle):
+    def move(self):
+        print("Flying ✈️")
+
+class Boat(Vehicle):
+    def move(self):
+        print("Sailing 🚢")
