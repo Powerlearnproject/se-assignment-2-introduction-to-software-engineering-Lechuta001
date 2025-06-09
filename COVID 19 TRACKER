@@ -1,0 +1,38 @@
+COVID-19 Data Analysis Report
+
+import pandas as pd import matplotlib.pyplot as plt import seaborn as sns import plotly.express as px
+
+Load Data
+
+df = pd.read_csv('https://covid.ourworldindata.org/data/owid-covid-data.csv') df['date'] = pd.to_datetime(df['date']) df = df[df['continent'].notna()]  # Filter out non-country rows
+
+Fill missing values
+
+df.fillna(0, inplace=True)
+
+Calculate indicators
+
+df['death_rate'] = df['total_deaths'] / df['total_cases'] df['vaccination_rate'] = df['people_fully_vaccinated'] / df['population']
+
+Filter for selected countries
+
+selected_countries = ['Kenya', 'United States', 'India'] country_df = df[df['location'].isin(selected_countries)]
+
+Plot Total Cases
+
+plt.figure(figsize=(12,6)) for country in selected_countries: country_data = country_df[country_df['location'] == country] plt.plot(country_data['date'], country_data['total_cases'], label=country) plt.title('Total COVID-19 Cases Over Time') plt.xlabel('Date') plt.ylabel('Total Cases') plt.legend() plt.grid(True) plt.show()
+
+Plot Vaccination Rates
+
+plt.figure(figsize=(12,6)) for country in selected_countries: country_data = country_df[country_df['location'] == country] plt.plot(country_data['date'], country_data['vaccination_rate'], label=country) plt.title('Vaccination Rate Over Time') plt.xlabel('Date') plt.ylabel('Vaccination Rate') plt.legend() plt.grid(True) plt.show()
+
+ICU Patients if available
+
+if 'icu_patients' in df.columns: plt.figure(figsize=(12,6)) for country in selected_countries: country_data = country_df[country_df['location'] == country] plt.plot(country_data['date'], country_data['icu_patients'], label=country) plt.title('ICU Patients Over Time') plt.xlabel('Date') plt.ylabel('ICU Patients') plt.legend() plt.grid(True) plt.show()
+
+Save cleaned and filtered data
+
+country_df.to_csv('cleaned_covid_data.csv', index=False)
+
+print("Analysis complete. Visualizations generated and data saved.")
+
