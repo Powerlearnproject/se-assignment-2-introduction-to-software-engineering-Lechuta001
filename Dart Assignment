@@ -1,0 +1,141 @@
+void main() {
+  // 1. Define Variables
+  int age = 25;
+  double height = 5.9;
+  String name = "Isaac";
+  bool isStudent = true;
+  List<int> scores = [45, 89, 32, 67];
+
+  print('Age: $age');
+  print('Height: $height');
+  print('Name: $name');
+  print('Is Student: $isStudent');
+  print('Scores: $scores');
+
+  // 2. Type Conversion Functions
+  print('\n--- Type Conversions ---');
+  print('String to int: ${stringToInt("123")}');
+  print('String to double: ${stringToDouble("45.67")}');
+  print('Int to String: ${intToString(100)}');
+  print('Int to double: ${intToDouble(100)}');
+
+  // 3. Conversion Function
+  print('\n--- convertAndDisplay ---');
+  convertAndDisplay("200");
+
+  // 4. Control Flow
+  print('\n--- If-Else ---');
+  checkNumber(0);
+  checkVotingEligibility(20);
+
+  print('\n--- Switch Case ---');
+  printDayOfWeek(4);
+
+  print('\n--- Loops ---');
+  print('For Loop:');
+  for (int i = 1; i <= 10; i++) {
+    print(i);
+  }
+
+  print('\nWhile Loop:');
+  int j = 10;
+  while (j >= 1) {
+    print(j);
+    j--;
+  }
+
+  print('\nDo-While Loop:');
+  int k = 1;
+  do {
+    print(k);
+    k++;
+  } while (k <= 5);
+
+  // 5. Combine Data & Control Flow
+  print('\n--- List Iteration & Categorization ---');
+  List<int> numbers = [3, 15, 120, 7, 89];
+  for (int num in numbers) {
+    print('Number: $num');
+
+    // Even or Odd
+    if (num % 2 == 0) {
+      print('Even');
+    } else {
+      print('Odd');
+    }
+
+    // Size category
+    switch (num) {
+      case <= 10:
+        print('Category: Small');
+        break;
+      case <= 100:
+        print('Category: Medium');
+        break;
+      default:
+        print('Category: Large');
+    }
+    print('---');
+  }
+}
+
+// Type Conversion Functions
+int stringToInt(String s) => int.parse(s);
+double stringToDouble(String s) => double.parse(s);
+String intToString(int n) => n.toString();
+double intToDouble(int n) => n.toDouble();
+
+// Convert and display function
+void convertAndDisplay(String number) {
+  int intValue = int.parse(number);
+  double doubleValue = double.parse(number);
+  print('Int: $intValue, Double: $doubleValue');
+}
+
+// If-Else Examples
+void checkNumber(int num) {
+  if (num > 0) {
+    print('Positive');
+  } else if (num < 0) {
+    print('Negative');
+  } else {
+    print('Zero');
+  }
+}
+
+void checkVotingEligibility(int age) {
+  if (age >= 18) {
+    print('Eligible to vote');
+  } else {
+    print('Not eligible to vote');
+  }
+}
+
+// Switch Case
+void printDayOfWeek(int day) {
+  switch (day) {
+    case 1:
+      print('Monday');
+      break;
+    case 2:
+      print('Tuesday');
+      break;
+    case 3:
+      print('Wednesday');
+      break;
+    case 4:
+      print('Thursday');
+      break;
+    case 5:
+      print('Friday');
+      break;
+    case 6:
+      print('Saturday');
+      break;
+    case 7:
+      print('Sunday');
+      break;
+    default:
+      print('Invalid day');
+  }
+}
